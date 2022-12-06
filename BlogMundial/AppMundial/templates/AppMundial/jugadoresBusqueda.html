@@ -1,0 +1,23 @@
+{% extends "AppMundial/base.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+
+    <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
+    <h1>Jugadores</h1>
+    <p>Toda la información acerca de los jugadores de las distintas selecciones que participan del mundial Qatar 2022</p>
+
+  
+
+  Ingresar un jugador:
+  <br>
+  <form action="/AppMundial/buscar/"   method='get'>{% csrf_token %}
+
+    <input type="text" name='nombre' id='nombre'>
+    <input type="submit", value="Buscar">
+
+  </form>
+
+{% endblock %}
