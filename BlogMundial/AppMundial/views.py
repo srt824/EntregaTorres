@@ -8,7 +8,7 @@ from AppMundial.forms import JugadorFormulario
 
 def buscar(request):
     nombre=request.GET['nombre']
-    return HttpResponse(f'Buscando al jugador {request}')
+    return HttpResponse(f'Buscando al jugador {nombre}')
 
 
 def buscarjugador(request):
@@ -44,5 +44,5 @@ def jugadorapi(request):
 
 
 def partidos(request):
-    partidos_all = Partidos8vos.objects.all()
-    return HttpResponse(serializers.serialize('json', partidos8vos))
+    partidos_all = Partidos_octavos.objects.all()
+    return HttpResponse(serializers.serialize('json', partidos_all))
