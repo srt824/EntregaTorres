@@ -1,18 +1,19 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from AppMundial.models import Jugador#, #partidos8vos
+from AppMundial.models import Jugador
 from django.core import serializers
 from AppMundial.forms import JugadorFormulario
 
 # Create your views here.
 
-def buscar(request):
-    nombre=request.GET['nombre']
-    return HttpResponse(f'Buscando al jugador {nombre}')
+def buscando(request):
+    jugador = request.GET['nombre']
+    jugador_datos = Jugador.objects.all()
+    return render(request, "AppMundial/resultadoJugador.html", {"nombre" : jugador_datos})
 
 
 def buscarjugador(request):
-    return render(request,'AppMundial/jugadoresBusqueda.html')
+    return render(request, "AppMundial/jugadores_busqueda.html")
 
 
 def inicio(request):
@@ -28,7 +29,7 @@ def jugadores(request):
             informacion = miFormulario.cleaned_data
             print(informacion)
 
-            jugadores = Jugador(nombre=informacion["nombre"], seleccion=informacion["seleccion"], dorsal=informacion["dorsal"])
+            jugadores = Jugador(nombre=informacion["nombre"], seleccion=informacion["seleccion"], dorsal=informacion["dorsal"], posicion=informacion["posicion"], clubactual=informacion["clubactual"])
             jugadores.save()
             return render(request, "AppMundial/inicio.html")
 
@@ -43,6 +44,7 @@ def jugadorapi(request):
     return HttpResponse(serializers.serialize('json', jugadores_all))
 
 
-def partidos(request):
-    partidos_all = Partidos_octavos.objects.all()
-    return HttpResponse(serializers.serialize('json', partidos_all))
+
+
+
+
