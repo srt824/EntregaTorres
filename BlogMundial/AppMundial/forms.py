@@ -8,5 +8,3 @@ class JugadorFormulario(forms.Form):
     dorsal = forms.IntegerField()
 
 
-class Busquedajugador(forms.Form):
-    nombre = forms.CharField()

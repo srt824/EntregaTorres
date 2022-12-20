@@ -1,15 +1,35 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from AppMundial.models import Jugador
+from AppMundial.models import Jugador, Selecciones, Grupos
 from django.core import serializers
 from AppMundial.forms import JugadorFormulario
 
 # Create your views here.
 
+def mostrargrupos(request):
+    grupos = request.GET['grupoA']
+    grupos_datos = Grupos.objects.filter(grupos=grupos).last()
+    return render(request, "AppMundial/resultado_grupos.html", {"grupos" : grupos_datos})
+
+
+def buscargrupo(request):
+    return render(request, "AppMundial/grupos_busqueda.html")
+
+
+def buscando2(request):
+    seleccion = request.GET['seleccion']
+    seleccion_datos = Selecciones.objects.filter(seleccion=seleccion).last()
+    return render(request, "AppMundial/resultadoSeleccion.html", {"seleccion_datos" : seleccion_datos})
+
+
+def buscarseleccion(request):
+    return render(request, "AppMundial/selecciones_busqueda.html")
+
+
 def buscando(request):
     jugador = request.GET['nombre']
-    jugador_datos = Jugador.objects.all()
-    return render(request, "AppMundial/resultadoJugador.html", {"nombre" : jugador_datos})
+    jugador_datos = Jugador.objects.filter(nombre=jugador).last()
+    return render(request, "AppMundial/resultadoJugador.html", {"jugador_datos" : jugador_datos})
 
 
 def buscarjugador(request):

@@ -17,19 +17,20 @@ class Selecciones(models.Model):
 
 
 class Grupos(models.Model):
-    GrupoA = models.CharField(max_length=40, null=True, blank=True)
-    GrupoB = models.CharField(max_length=40, null=True, blank=True)
-    GrupoC = models.CharField(max_length=40, null=True, blank=True)
-    GrupoD = models.CharField(max_length=40, null=True, blank=True)
-    GrupoE = models.CharField(max_length=40, null=True, blank=True)
-    GrupoF = models.CharField(max_length=40, null=True, blank=True)
-    GrupoG = models.CharField(max_length=40, null=True, blank=True)
-    GrupoH = models.CharField(max_length=40, null=True, blank=True)
+    grupoA = models.CharField(max_length=40, null=True, blank=True)
+    grupoB = models.CharField(max_length=40, null=True, blank=True)
+    grupoC = models.CharField(max_length=40, null=True, blank=True)
+    grupoD = models.CharField(max_length=40, null=True, blank=True)
+    grupoE = models.CharField(max_length=40, null=True, blank=True)
+    grupoF = models.CharField(max_length=40, null=True, blank=True)
+    grupoG = models.CharField(max_length=40, null=True, blank=True)
+    grupoH = models.CharField(max_length=40, null=True, blank=True)
 
 
 class Estadios(models.Model):
     nombreestadio = models.CharField(max_length=20, null=True, blank=True)
     ubicacion = models.CharField(max_length=20,null=True, blank=True)
+    capacidad = models.IntegerField(null=True, blank=True)
 
 
 class Fase_grupos(models.Model):
@@ -72,6 +73,17 @@ class Partidos_semis(models.Model):
     horario = models.TimeField()
     resultado = models.CharField(max_length=60, null=True, blank=True)
     ganador = models.CharField(max_length=30, null=True, blank=True)
+
+
+class Tercer_puesto(models.Model):
+    versus = models.CharField(max_length=60, null=True, blank=True)
+    fecha = models.DateField()
+    estadio = models.CharField(max_length=20, null=True, blank=True)
+    arbitro = models.CharField(max_length=30, null=True, blank=True)
+    horario = models.TimeField()
+    resultado = models.CharField(max_length=60, null=True, blank=True)
+    ganador = models.CharField(max_length=30, null=True, blank=True)
+
 
 
 class La_final(models.Model):
