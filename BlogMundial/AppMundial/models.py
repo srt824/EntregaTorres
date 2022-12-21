@@ -6,6 +6,7 @@ from django.db import models
 
 class Jugador(models.Model):
     nombre = models.CharField(max_length=30, null=True, blank=True)
+    edad = models.IntegerField(null=True, blank=True)
     seleccion = models.CharField(max_length=30, null=True, blank=True)
     posicion = models.CharField(max_length=20, null=True, blank=True) 
     clubactual = models.CharField(max_length=30, null=True)
@@ -13,22 +14,19 @@ class Jugador(models.Model):
 
 class Selecciones(models.Model):
     seleccion = models.CharField(max_length=30, null=True, blank=True)
-    banderacolor = models.CharField(max_length=30, null=True, blank=True)
+    bandera_color = models.CharField(max_length=30, null=True, blank=True)
+    director_tecnico = models.CharField(max_length=30, null=True, blank=True)
 
 
 class Grupos(models.Model):
-    grupoA = models.CharField(max_length=40, null=True, blank=True)
-    grupoB = models.CharField(max_length=40, null=True, blank=True)
-    grupoC = models.CharField(max_length=40, null=True, blank=True)
-    grupoD = models.CharField(max_length=40, null=True, blank=True)
-    grupoE = models.CharField(max_length=40, null=True, blank=True)
-    grupoF = models.CharField(max_length=40, null=True, blank=True)
-    grupoG = models.CharField(max_length=40, null=True, blank=True)
-    grupoH = models.CharField(max_length=40, null=True, blank=True)
+    categoria = models.CharField(max_length=10, null=True, blank=True)
+    paises = models.CharField(max_length=100, null=True, blank=True)
+
+
 
 
 class Estadios(models.Model):
-    nombreestadio = models.CharField(max_length=20, null=True, blank=True)
+    nombre_estadio = models.CharField(max_length=30, null=True, blank=True)
     ubicacion = models.CharField(max_length=20,null=True, blank=True)
     capacidad = models.IntegerField(null=True, blank=True)
 
@@ -98,6 +96,7 @@ class La_final(models.Model):
 
 class Arbitros(models.Model):
     nombre = models.CharField(max_length=30, null=True, blank=True)
+    edad = models.IntegerField(null=True, blank=True)
     nacionalidad = models.CharField(max_length=20, null=True, blank=True)
     
 

@@ -7,13 +7,8 @@ from AppMundial.forms import JugadorFormulario
 # Create your views here.
 
 def mostrargrupos(request):
-    grupos = request.GET['grupoA']
-    grupos_datos = Grupos.objects.filter(grupos=grupos).last()
-    return render(request, "AppMundial/resultado_grupos.html", {"grupos" : grupos_datos})
-
-
-def buscargrupo(request):
-    return render(request, "AppMundial/grupos_busqueda.html")
+    grupos_datos = Grupos.objects.all()
+    return render(request, "AppMundial/resultado_grupos.html", {"grupos_datos" : grupos_datos})
 
 
 def buscando2(request):

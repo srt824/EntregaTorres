@@ -8,10 +8,9 @@ urlpatterns = [
     path('jugadoresApi/', views.jugadorapi),
     path('AppMundial/busquedaJugador/', views.buscarjugador, name='Buscar'),
     path('AppMundial/buscando/', views.buscando),
-    path('AppMundial/busquedaSeleccion/', views.buscarseleccion, name='buscandoS'),
-    path('AppMundial/buscandoS/', views.buscando2),
-    path('AppMundial/buscargr/', views.buscargrupo),
-    path('AppMundial/grupos/', views.mostrargrupos),
+    path('AppMundial/busquedaSeleccion/', views.buscarseleccion, name='buscandoSeleccion'),
+    path('AppMundial/buscandoSeleccion/', views.buscando2),
+    path('AppMundial/grupos/', views.mostrargrupos, name='grupos'),
     
 
 
