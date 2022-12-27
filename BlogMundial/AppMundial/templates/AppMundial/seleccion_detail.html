@@ -1,0 +1,16 @@
+{% extends "AppMundial/base.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+Nombre: {{selecciones.nombre}}
+<br>
+Bandera: {{selecciones.bandera_color}}
+<br>
+Director Tenico: {{selecciones.director_tecnico}}
+<br>
+
+<a href="{% url 'Lists' %}">Regresar</a>
+
+{% endblock %}

@@ -1,0 +1,20 @@
+{% extends "AppMundial/base.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+<h3>Partidos de la Fase de Grupos</h3>
+    <ul>
+        {% for fase_grupos in object_list %}
+            <p>{{fase_grupos.partido}}</p>
+            <p>
+                <a href="{% url 'Detailfg' fase_grupos.id %}">Ver</a>
+                <a href="{% url 'Editfg' fase_grupos.id %}">Editar</a>
+                <a href="{% url 'Deletefg' fase_grupos.id %}">Borrar</a>
+            </p>
+        {% endfor %}
+
+    </ul>
+    
+{% endblock %}

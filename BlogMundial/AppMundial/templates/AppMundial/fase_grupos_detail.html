@@ -1,0 +1,26 @@
+{% extends "AppMundial/base.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+Grupo: {{fase_grupos.nombre}}
+<br>
+Partido: {{fase_grupos.partido}}
+<br>
+Estadio: {{fase_grupos.estadio}}
+<br>
+Arbitro: {{fase_grupos.arbitro}}
+<br>
+Fecha: {{fase_grupos.fecha}}
+<br>
+Horario: {{fase_grupos.horario}}
+<br>
+Resultado: {{fase_grupos.resultado}}
+<br>
+Ganador: {{fase_grupos.ganador}}
+<br>
+
+<a href="{% url 'Listfg' %}">Regresar</a>
+
+{% endblock %}

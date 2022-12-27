@@ -8,16 +8,16 @@
     <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
 
 
-    <h1>Selecciones</h1>
+    <h1>Partidos de la Fase de Grupos</h1>
     
 
   
 
-  Buscar Seleccion:
+  Buscar partido:
   <br>
-  <form action="/AppMundial/buscandoSeleccion/"   method='get'>{% csrf_token %}
+  <form action="/AppMundial/buscandoPartidos/"   method='get'>{% csrf_token %}
 
-    <input type="text" name='selecciones' id='selecciones'>
+    <input type="text" name='nombre' id='nombre'>
     <input type="submit", value="Buscar">
 
   </form>

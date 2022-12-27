@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from AppMundial.models import Jugador, Selecciones, Grupos
+from AppMundial.models import Jugador, Selecciones, Grupos, Fase_grupos
 from django.core import serializers
 from AppMundial.forms import JugadorFormulario
 
@@ -11,19 +11,29 @@ def mostrargrupos(request):
     return render(request, "AppMundial/resultado_grupos.html", {"grupos_datos" : grupos_datos})
 
 
-def buscando2(request):
-    seleccion = request.GET['seleccion']
-    seleccion_datos = Selecciones.objects.filter(seleccion=seleccion).last()
-    return render(request, "AppMundial/resultadoSeleccion.html", {"seleccion_datos" : seleccion_datos})
+def buscandoPartidos(request):
+    return render(request, "AppMundial/fase_grupos_busqueda.html")
+
+
+def buscarPartidos(request):
+    nombre = request.GET['nombre']
+    fasegrupos_datos = Fase_grupos.objects.filter(nombre=nombre).last()
+    return render(request, "AppMundial/resultadoFasegrupos.html", {"fasegrupos_datos" : fasegrupos_datos})
 
 
 def buscarseleccion(request):
     return render(request, "AppMundial/selecciones_busqueda.html")
 
 
+def buscando2(request):
+    nombre = request.GET['selecciones']
+    seleccion_datos = Selecciones.objects.filter(nombre=nombre).last()
+    return render(request, "AppMundial/resultadoSeleccion.html", {"seleccion_datos" : seleccion_datos})
+
+
 def buscando(request):
-    jugador = request.GET['nombre']
-    jugador_datos = Jugador.objects.filter(nombre=jugador).last()
+    nombre = request.GET['nombre']
+    jugador_datos = Jugador.objects.filter(nombre=nombre).last()
     return render(request, "AppMundial/resultadoJugador.html", {"jugador_datos" : jugador_datos})
 
 
@@ -54,9 +64,120 @@ def jugadores(request):
     return render(request, "AppMundial/jugadores.html", {"miFormulario": miFormulario})
 
     
-def jugadorapi(request):
+def leer_jugadores(request):
     jugadores_all = Jugador.objects.all()
     return HttpResponse(serializers.serialize('json', jugadores_all))
+
+
+def crear_jugador(request):
+    jugador = Jugador(nombre = 'Lionel Messi', edad = 35, seleccion = 'Argentina', posicion = 'delantero', clubactual = 'Paris Saint-Germain', dorsal = 10, )
+    jugador.save()
+    return HttpResponse(f'El jugador {jugador.nombre} ha sido agregado')
+
+
+def editar_jugador(request):
+    nombre_consulta = 'Lionel Messi'
+    Jugador.objects.filter(nombre=nombre_consulta).update(nombre='NombrenuevoLionelMessi')
+    return HttpResponse(f'El jugador {nombre_consulta} ha sido actualizado')
+
+
+def eliminar_jugador(request):
+    nombre_nuevo = 'NombrenuevoLionelMessi'
+    jugador = Jugador.objects.get(nombre=nombre_nuevo)
+    jugador.delete()
+    return HttpResponse(f'El jugador {nombre_nuevo} ha sido eliminado')
+
+# Vistas basadas en Clases
+
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+
+# CRUD
+
+class JugadorList(ListView):
+    model = Jugador
+    template_name = 'AppMundial/jugador_list.html'
+
+
+class JugadorCreate(CreateView):
+    model = Jugador
+    fields = '__all__'
+    success_url = '/AppMundial/jugador/list/'
+
+
+class JugadorEdit(UpdateView):
+    model = Jugador
+    fields = '__all__'
+    success_url = '/AppMundial/jugador/list/'
+
+from django.views.generic.detail import DetailView
+
+
+class JugadorDetail(DetailView):
+    model = Jugador
+    template_name = 'AppMundial/jugador_detail.html'
+
+
+class JugadorDelete(DeleteView):
+    model = Jugador
+    #fields = '__all__'
+    success_url = '/AppMundial/jugador/list/'
+
+
+class SeleccionesList(ListView):
+    model = Selecciones
+    template_name = 'AppMundial/seleccion_list.html'
+
+
+class SeleccionesCreate(CreateView):
+    model = Jugador
+    fields = '__all__'
+    success_url = '/AppMundial/seleccion/lists/'
+
+
+class SeleccionesEdit(UpdateView):
+    model = Selecciones
+    fields = '__all__'
+    success_url = '/AppMundial/seleccion/lists/'
+
+
+class SeleccionesDetail(DetailView):
+    model = Selecciones
+    template_name = 'AppMundial/seleccion_detail.html'
+
+
+class SeleccionesDelete(DeleteView):
+    model = Selecciones
+    #fields = '__all__'
+    success_url = '/AppMundial/selecciones/lists/'
+
+
+class FaseGruposList(ListView):
+    model = Fase_grupos
+    template_name = '/AppMundial/fase_grupos_list.html'
+
+
+class FaseGruposCreate(CreateView):
+    model = Fase_grupos
+    fields = '__all__'
+    success_url = '/AppMundial/fasegrupos/listfg/'
+
+
+class FaseGruposEdit(UpdateView):
+    model = Fase_grupos
+    fields = '__all__'
+    success_url = '/AppMundial/fasegrupos/listfg/'
+
+
+class FaseGruposDetail(DetailView):
+    model = Fase_grupos
+    template_name = 'AppMundial/fase_grupos_detail.html'
+
+
+class FaseGruposDelete(DeleteView):
+    model = Fase_grupos
+    #fields = '__all__'
+    success_url = '/AppMundial/fasegrupos/listfg/'
 
 
 

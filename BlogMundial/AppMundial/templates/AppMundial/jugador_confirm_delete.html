@@ -1,0 +1,14 @@
+{% extends "AppMundial/base.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+
+<form method="post">{% csrf_token %}
+    Estás seguro que deseas borrar a "{{ object.nombre }}"?
+    <input type="submit" value="Eliminar"/>
+  </form>
+
+
+{% endblock %}  

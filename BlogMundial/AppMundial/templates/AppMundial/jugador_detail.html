@@ -1,0 +1,22 @@
+{% extends "AppMundial/base.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+
+Nombre: {{jugador.nombre}}
+<br>
+Edad: {{jugador.edad}}
+<br>
+Seleccion : {{jugador.seleccion}}
+<br>
+Posicion: {{jugador.posicion}}
+<br>
+Club actual: {{jugador.clubactual}}
+<br>
+Dorsal: {{jugador.dorsal}}
+<br>
+
+<a href="{% url 'List' %}">Regresar</a>
+
+{% endblock %}
