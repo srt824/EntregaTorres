@@ -1,0 +1,26 @@
+{% extends "AppMundial/base.html" %}
+
+{% load static %}
+
+{% block contenidoQueCambia %}
+<p><strong><h2>Partidos de la fase de grupos</h2></strong></p>
+
+Grupo: {{fase_grupos_datos.grupo}}
+<br>
+Partido: {{fase_grupos_datos.partido}}
+<br>
+Estadio: {{fase_grupos_datos.estadio}}
+<br>
+Arbitro: {{fase_grupos_datos.arbitro}}
+<br>
+Fecha: {{fase_grupos_datos.fecha}}
+<br>
+Horario: {{fase_grupos_datos.horario}}
+<br>
+Resultado: {{fase_grupos_datos.resultado}}
+<br>
+Ganador: {{fase_grupos_datos.ganador}}
+<br>
+
+
+{% endblock %}

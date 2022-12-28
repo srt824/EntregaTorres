@@ -43,7 +43,7 @@ class Estadios(models.Model):
 
 
 class Fase_grupos(models.Model):
-    nombre = models.CharField(max_length=20, null=True, blank=True)
+    grupo = models.CharField(max_length=20, null=True, blank=True)
     partido = models.CharField(max_length=60, null=True, blank=True)
     estadio = models.CharField(max_length=20, null=True, blank=True)
     arbitro = models.CharField(max_length=30, null=True, blank=True)
@@ -53,7 +53,7 @@ class Fase_grupos(models.Model):
     ganador = models.CharField(max_length=30, null=True, blank=True)
 
     def __str__(self):
-        return self.versus
+        return self.partido
 
 
 class Partidos_octavos(models.Model):

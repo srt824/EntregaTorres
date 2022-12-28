@@ -11,14 +11,14 @@ def mostrargrupos(request):
     return render(request, "AppMundial/resultado_grupos.html", {"grupos_datos" : grupos_datos})
 
 
-def buscandoPartidos(request):
+def buscandopartido(request):
+    partido = request.GET['partido']
+    fase_grupos_datos = Fase_grupos.objects.filter(partido=partido).last()
+    return render(request, "AppMundial/resultadoFase.html", {"fase_grupos_datos" : fase_grupos_datos})
+
+
+def buscarpartido(request):
     return render(request, "AppMundial/fase_grupos_busqueda.html")
-
-
-def buscarPartidos(request):
-    nombre = request.GET['nombre']
-    fasegrupos_datos = Fase_grupos.objects.filter(nombre=nombre).last()
-    return render(request, "AppMundial/resultadoFasegrupos.html", {"fasegrupos_datos" : fasegrupos_datos})
 
 
 def buscarseleccion(request):
@@ -130,7 +130,7 @@ class SeleccionesList(ListView):
 
 
 class SeleccionesCreate(CreateView):
-    model = Jugador
+    model = Selecciones
     fields = '__all__'
     success_url = '/AppMundial/seleccion/lists/'
 
@@ -152,29 +152,29 @@ class SeleccionesDelete(DeleteView):
     success_url = '/AppMundial/selecciones/lists/'
 
 
-class FaseGruposList(ListView):
+class Fase_gruposList(ListView):
     model = Fase_grupos
     template_name = '/AppMundial/fase_grupos_list.html'
 
 
-class FaseGruposCreate(CreateView):
+class Fase_gruposCreate(CreateView):
     model = Fase_grupos
     fields = '__all__'
     success_url = '/AppMundial/fasegrupos/listfg/'
 
 
-class FaseGruposEdit(UpdateView):
+class Fase_gruposEdit(UpdateView):
     model = Fase_grupos
     fields = '__all__'
     success_url = '/AppMundial/fasegrupos/listfg/'
 
 
-class FaseGruposDetail(DetailView):
+class Fase_gruposDetail(DetailView):
     model = Fase_grupos
     template_name = 'AppMundial/fase_grupos_detail.html'
 
 
-class FaseGruposDelete(DeleteView):
+class Fase_gruposDelete(DeleteView):
     model = Fase_grupos
     #fields = '__all__'
     success_url = '/AppMundial/fasegrupos/listfg/'
